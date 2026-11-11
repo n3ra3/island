@@ -1,0 +1,33 @@
+<UserControl x:Class="DynamicIsland.ClipPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:DynamicIsland">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="36"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Border Background="{StaticResource Fill1}" CornerRadius="10" Padding="12,0">
+                <Grid>
+                    <local:Icon Data="{StaticResource i.search}" Width="16" Height="16" Foreground="{StaticResource Label3}" HorizontalAlignment="Left"/>
+                    <TextBlock x:Name="Placeholder" Text="Поиск в буфере" Foreground="{StaticResource Label3}" Margin="26,0,0,0" VerticalAlignment="Center" IsHitTestVisible="False"/>
+                    <TextBox x:Name="Search" Style="{StaticResource Plain}" Margin="24,0,0,0" VerticalContentAlignment="Center" VerticalAlignment="Center"/>
+                </Grid>
+            </Border>
+            <Button Grid.Column="1" Style="{StaticResource Btn}" Click="Clear_Click" Margin="8,0,0,0" Padding="12,0"
+                    Background="{StaticResource Fill1}" local:Ui.Radius="10" Foreground="{StaticResource Label2}">
+                <TextBlock Text="Очистить" FontWeight="Medium"/>
+            </Button>
+        </Grid>
+        <ScrollViewer Grid.Row="1" Margin="0,8,0,0" VerticalScrollBarVisibility="Hidden">
+            <StackPanel x:Name="List"/>
+        </ScrollViewer>
+        <TextBlock x:Name="Empty" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Foreground="{StaticResource Label3}" FontWeight="Medium" TextAlignment="Center"/>
+    </Grid>
+</UserControl>

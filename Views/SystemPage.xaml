@@ -1,0 +1,14 @@
+<UserControl x:Class="DynamicIsland.SystemPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <UniformGrid x:Name="Perf" Columns="3" Margin="-5,0,-5,10"/>
+        <UniformGrid x:Name="Toggles" Grid.Row="1" Columns="3" Margin="-5,0,-5,10"/>
+        <UniformGrid x:Name="Power" Grid.Row="2" Columns="4" Margin="-5,0"/>
+    </Grid>
+</UserControl>
