@@ -1,0 +1,48 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>DynamicIsland</RootNamespace>
+    <AssemblyName>DynamicIsland</AssemblyName>
+    <!-- Меньше фоновых потоков GC = меньше памяти -->
+    <ConcurrentGarbageCollection>false</ConcurrentGarbageCollection>
+    <SatelliteResourceLanguages>ru</SatelliteResourceLanguages>
+    <NoWarn>CA1416</NoWarn>
+
+    <!-- Значок и сведения о программе (видны в свойствах файла и в «Приложениях») -->
+    <ApplicationIcon>app.ico</ApplicationIcon>
+    <Version>1.1.0</Version>
+    <Product>Dynamic Island</Product>
+    <AssemblyTitle>Dynamic Island</AssemblyTitle>
+    <Description>Островок в стиле Apple для Windows</Description>
+    <Copyright>© 2026</Copyright>
+  </PropertyGroup>
+
+  <!-- Сборка для раздачи: один файл со всем внутри, на компьютере друга не нужен .NET -->
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <SelfContained>true</SelfContained>
+    <PublishSingleFile>true</PublishSingleFile>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+    <DebugType>none</DebugType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- WinForms нужен только для значка в трее; убираем его пространства имён, чтобы не путались с WPF -->
+    <Using Remove="System.Windows.Forms" />
+    <Using Remove="System.Drawing" />
+    <Compile Remove="mockup\**;installer\**;dist\**" />
+    <None Remove="mockup\**;installer\**;dist\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NAudio.Wasapi" Version="2.2.1" />
+    <PackageReference Include="System.Diagnostics.PerformanceCounter" Version="8.0.1" />
+  </ItemGroup>
+
+</Project>
